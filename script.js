@@ -34,8 +34,8 @@ function draw() {
     b.show();
   }
   player.update(mouseX, mouseY);
-  player.look(boundaries);
   player.show();
+  player.look(boundaries);
   noFill();
   stroke(255);
   rect(0, 0, width, height);
