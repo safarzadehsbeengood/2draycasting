@@ -1,14 +1,27 @@
+let speed = 3;
 class Player {
   constructor() {
     this.pos = createVector(random(width), random(height));
     this.rays = [];
-    for (let a = 0; a < 360; a++) {
+    for (let a = 0; a < 360; a+=0.5) {
       this.rays.push(new Ray(this.pos, radians(a)));
     }
   }
 
   update(x, y) {
     this.pos.set(x, y);
+  }
+
+  move() {
+    if (keyIsDown(UP_ARROW)) {
+      this.pos.y -= speed;
+    } if (keyIsDown(DOWN_ARROW)) {
+      this.pos.y += speed;
+    } if (keyIsDown(LEFT_ARROW)) {
+      this.pos.x -= speed;
+    } if (keyIsDown(RIGHT_ARROW)) {
+      this.pos.x += speed;
+    }
   }
 
   look(boundaries) {
@@ -35,10 +48,11 @@ class Player {
 
   show() {
     fill(255);
-    circle(this.pos.x, this.pos.y, 4);
     for (let ray of this.rays) {
       ray.show();
     }
+    fill(0);
+    circle(this.pos.x, this.pos.y, 4);
   }
 
   move() {
