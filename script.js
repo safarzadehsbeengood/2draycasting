@@ -3,10 +3,8 @@ let ray;
 let boundaries = [];
 let n = 6;
 let player;
-
-function ptc(r, a) {
-  return createVector(r*cos(a), r*sin(a));
-}
+let xoff = 0;
+let yoff = 10000;
 
 
 function setup() {
@@ -33,10 +31,13 @@ function draw() {
   for (b of boundaries) {
     b.show();
   }
-  player.update(mouseX, mouseY);
+  // player.update(mouseX, mouseY);
+  player.update(noise(xoff)*width, noise(yoff)*height);
   player.show();
   player.look(boundaries);
   noFill();
   stroke(255);
   rect(0, 0, width, height);
+  xoff += 0.005;
+  yoff += 0.005;
 }
